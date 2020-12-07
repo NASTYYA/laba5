@@ -14,6 +14,8 @@ public:
 	Mebel(string name, int kol) {
 		(*this).name = name;
 		(*this).kol = kol;
+
+		virtual char* name(void) { return "name" };
 	}
 	string get_print()
 	{
@@ -38,6 +40,13 @@ public:
 		(*this).lenth = lenth;
 		(*this).width = width;
 		(*this).high = high;
+
+		char *name(void);
+	}
+
+	char * Table::name(void)
+	{
+		return("Table");
 	}
 	void get_Table()
 	{
@@ -64,6 +73,13 @@ public:
 		(*this).type = type;
 		(*this).material2 = material2;
 		(*this).high = high;
+
+		char *name(void);
+	}
+
+	char * Table::name(void)
+	{
+		return("Bookcase");
 	}
 	string get_bookcase()
 	{
@@ -160,7 +176,8 @@ int main() {
 	ukazatel[1] = &t;
 
 	
-	ukazatel
+	ukazatel[i]->table_see();
+
 	int input;
 
 	do {

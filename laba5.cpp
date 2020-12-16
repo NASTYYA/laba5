@@ -18,9 +18,11 @@ public:
 
 
 	}
-	virtual * void get_print(void)
+	virtual void get_print(void)
 	{
-		cout << "Производитель: " << (*this).name << " Количество: " << (*this).kol;
+
+		cout << " Производитель стола: " << (*this).name << "\n Количество столов: ";
+
 	}
 
 	Mebel() { cout << "Конструктор" << endl; }
@@ -43,8 +45,9 @@ public:
 
 	}
 
-	void * get_print(void)
+	void get_print(void)
 	{
+
 		cout << " Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Длина стола: " << (*this).lenth
 			<< "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
 
@@ -69,9 +72,10 @@ public:
 
 	}
 
-	void * get_print(void)
+	void get_print(void)
 	{
-		cout << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: "
+
+		cout << "\n Производитель шкафа: " << (*this).name << "\n Количество: " << (*this).kol << "\n Тип шкафа: "
 			<< (*this).type << "\n Материал : " << (*this).material2;
 	}
 
@@ -85,7 +89,7 @@ public:
 };
 void seeCase()
 {
-	string name; int kol; int lenth; int width;
+	string name; int kol; int lenth; int width; int high;
 	string type; string material2;
 	cout << "Введите информацию о шкафе\n ";
 	cout << "Производитель: ";
@@ -101,6 +105,13 @@ void seeCase()
 	cout << "Материал : "; cin >> material2;
 	bookcase* st = new bookcase(name, kol, type, material2);
 	cout << (*st).get_bookcase() << endl;
+	Mebel *p[2];//масси указателей
+	bookcase obj1(name, kol, type, material2);//объекты
+	p[0] = &obj1; // инициализация массива указателей 
+
+	cout << "Шкафы   ";
+	p[0]->get_print();
+
 }
 
 void seeTable()
@@ -147,7 +158,6 @@ void seeTable()
 	p[0]->get_print();
 	cout << "Столы   ";
 	p[1]->get_print();
-
 }
 
 int main() {

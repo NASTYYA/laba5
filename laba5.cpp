@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <string>
 #include <sstream>
+#include "ConsoleApplication7 laba5.h"
 using namespace std;
 
 
@@ -15,15 +16,13 @@ public:
 		(*this).name = name;
 		(*this).kol = kol;
 
-		virtual char* name(void) { return "name" };
+
 	}
-	string get_print()
+	virtual void get_print(void)
 	{
-		ostringstream full_name;
-		full_name << "Производитель: " << (*this).name << " Количество: " << (*this).kol;
-		return full_name.str();
+		cout << "Производитель: " << (*this).name << " Количество: " << (*this).kol;
 	}
-	virtual void get_Table(void);
+
 	Mebel() { cout << "Конструктор" << endl; }
 	virtual ~Mebel() { cout << "Диструктор" << endl; }
 };
@@ -41,20 +40,15 @@ public:
 		(*this).width = width;
 		(*this).high = high;
 
-		char *name(void);
+
 	}
 
-	char * Table::name(void)
+	void get_print(void)
 	{
-		return("Table");
-	}
-	void get_Table()
-	{
-		ostringstream full;
-		full << " Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Длина стола: " << (*this).lenth << "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
-		return full.str();
-	}
+		cout << " Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Длина стола: " << (*this).lenth
+			<< "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
 
+	}
 
 };
 
@@ -63,34 +57,35 @@ class bookcase : public Mebel {
 protected:
 	string type;
 	string material2;
-	int high;
 public:
-	bookcase(string name, int kol, int lenth, int width, string type, string material2, int high)
+	bookcase(string name, int kol, string type, string material2)
 		: Mebel(name, kol)
 	{
 		(*this).name = name;
 		(*this).kol = kol;
 		(*this).type = type;
 		(*this).material2 = material2;
-		(*this).high = high;
 
-		char *name(void);
+
 	}
 
-	char * Table::name(void)
+	void get_print(void)
 	{
-		return("Bookcase");
+		cout << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: "
+			<< (*this).type << "\n Материал : " << (*this).material2;
 	}
+
 	string get_bookcase()
 	{
 		ostringstream nam;
-		nam << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: " << (*this).type << "\n Материал : " << (*this).material2;
+		nam << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: "
+			<< (*this).type << "\n Материал : " << (*this).material2;
 		return nam.str();
 	}
 };
 void seeCase()
 {
-	string name; int kol; int lenth; int width; int high;
+	string name; int kol; int lenth; int width;
 	string type; string material2;
 	cout << "Введите информацию о шкафе\n ";
 	cout << "Производитель: ";
@@ -101,32 +96,14 @@ void seeCase()
 		cout << "Ошибка.Введите данные ещё раз: ";
 		cin >> kol;
 	}
-	cout << "Длина шкафа: "; cin >> lenth;;
-	while (lenth < 0)
-	{
-		cout << "Ошибка.Введите данные ещё раз: ";
-		cin >> kol;;
-	}
-	cout << "Ширина шкафа: "; cin >> width;
-	while (width < 0)
-	{
-		cout << "Ошибка.Введите данные ещё раз: ";
-		cin >> width;
-	}
-	cout << "Высота шкафа: "; cin >> high;
-	while (high < 0)
-	{
-		cout << "Ошибка.Введите данные ещё раз: ";
-		cin >> high;
-	}
+
 	cout << "Тип шкафа: "; cin >> type;
 	cout << "Материал : "; cin >> material2;
-	bookcase* st = new bookcase(name, kol, lenth, width, type, material2, high);
-
+	bookcase* st = new bookcase(name, kol, type, material2);
 	cout << (*st).get_bookcase() << endl;
 }
 
-virtual void seeTable()
+void seeTable()
 {
 	string name; int kol; int lenth; int width; int high;
 	string type; string material2;
@@ -160,23 +137,20 @@ virtual void seeTable()
 	cout << "Тип: "; cin >> type;
 	cout << "Материал : "; cin >> material2;
 
-	Table* stud = new Table(name, kol, lenth, width, high);
+	Mebel *p[2];//масси указателей
+	bookcase obj1(name, kol, type, material2);//объекты
+	Table obj2(name, kol, lenth, width, high);
+	p[0] = &obj1; // инициализация массива указателей 
+	p[1] = &obj2;
+	p[1]->get_print();
+	cout << "Шкафы   ";
+	cout << (*p[0]).get_print;
 
-
-	cout << (*stud).get_Table() << endl;
 }
 
 int main() {
 	setlocale(LC_ALL, "Russian");
 
-	Mebel *ukazatel[2];
-	bookcase b;
-	Table t;
-	ukazatel[0] = &b; // инициализация массива указателей 
-	ukazatel[1] = &t;
-
-	
-	ukazatel[i]->table_see();
 
 	int input;
 
@@ -212,3 +186,5 @@ int main() {
 	system("pause>>NUL");
 	return 0;
 }
+
+

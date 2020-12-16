@@ -18,7 +18,7 @@ public:
 
 
 	}
-	virtual void get_print(void)
+	virtual * void get_print(void)
 	{
 		cout << "Производитель: " << (*this).name << " Количество: " << (*this).kol;
 	}
@@ -43,7 +43,7 @@ public:
 
 	}
 
-	void get_print(void)
+	void * get_print(void)
 	{
 		cout << " Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Длина стола: " << (*this).lenth
 			<< "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
@@ -69,7 +69,7 @@ public:
 
 	}
 
-	void get_print(void)
+	void * get_print(void)
 	{
 		cout << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: "
 			<< (*this).type << "\n Материал : " << (*this).material2;
@@ -142,9 +142,11 @@ void seeTable()
 	Table obj2(name, kol, lenth, width, high);
 	p[0] = &obj1; // инициализация массива указателей 
 	p[1] = &obj2;
-	p[1]->get_print();
+
 	cout << "Шкафы   ";
-	cout << (*p[0]).get_print;
+	p[0]->get_print();
+	cout << "Столы   ";
+	p[1]->get_print();
 
 }
 

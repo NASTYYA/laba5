@@ -8,22 +8,10 @@ using namespace std;
 
 
 class Mebel {
-protected:
-	string name;
-	int kol;
+
 public:
-	Mebel(string name, int kol) {
-		(*this).name = name;
-		(*this).kol = kol;
-
-
-	}
-	virtual void get_print(void)
-	{
-
-		cout << " Производитель стола: " << (*this).name << "\n Количество столов: ";
-
-	}
+	virtual void get_print(void);
+	virtual void get_print2() = 0;
 
 	Mebel() { cout << "Конструктор" << endl; }
 	virtual ~Mebel() { cout << "Диструктор" << endl; }
@@ -31,10 +19,11 @@ public:
 class Table : public Mebel {
 protected:
 	int lenth, width;
-	int high;
+	int high;	string name;
+	int kol;
 public:
 	Table(string name, int kol, int lenth, int width, int high)
-		: Mebel(name, kol)
+
 	{
 		(*this).name = name;
 		(*this).kol = kol;
@@ -52,7 +41,13 @@ public:
 			<< "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
 
 	}
+	void get_print2()
+	{
 
+		cout << " Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Длина стола: " << (*this).lenth
+			<< "\n Ширина стола: " << (*this).width << "\n Высота стола: " << (*this).high;
+
+	}
 };
 
 
@@ -60,9 +55,11 @@ class bookcase : public Mebel {
 protected:
 	string type;
 	string material2;
+	string name;
+	int kol;
+
 public:
 	bookcase(string name, int kol, string type, string material2)
-		: Mebel(name, kol)
 	{
 		(*this).name = name;
 		(*this).kol = kol;
@@ -85,6 +82,11 @@ public:
 		nam << "\n Производитель стола: " << (*this).name << "\n Количество столов: " << (*this).kol << "\n Тип шкафа: "
 			<< (*this).type << "\n Материал : " << (*this).material2;
 		return nam.str();
+	}
+	void get_print2()
+	{
+		cout << "\n Производитель шкафа: " << (*this).name << "\n Количество: " << (*this).kol << "\n Тип шкафа: "
+			<< (*this).type << "\n Материал : " << (*this).material2;
 	}
 };
 void seeCase()
@@ -110,7 +112,7 @@ void seeCase()
 	p[0] = &obj1; // инициализация массива указателей 
 
 	cout << "Шкафы   ";
-	p[0]->get_print();
+	p[0]->get_print2();
 
 }
 
